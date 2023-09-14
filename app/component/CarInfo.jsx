@@ -3,23 +3,23 @@ export default function CarInfo(props) {
   
     return (
       <>
-        <div className="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 w-60 md:w-80">
-          <div className="w-full p-4 bg-red-500">
-            <p className="mb-2 text-xl font-medium text-gray-800 dark:text-white">
-              VIN: {vin}
-            </p>
-            <p className="font-light text-gray-400 dark:text-gray-300 text-md">
-              Country: {country}
-            </p>
-            <p>
-              Manufacturer: {manufacturer}
-            </p>
-            <p>
-              Region: {region}
-            </p>
-            <p>
-              Years: {years.reverse().join('-')}
-            </p>
+        <div className="hover:cursor p-2 border-2 border-gray-700 bg-slate-50 rounded-lg shadow-lg text-left">
+          <div>
+                <p className="text-md m-1 font-medium text-black">
+                VIN: {vin}
+                </p>
+                <p className="text-md m-1 font-medium text-black">
+                Country: {country}
+                </p>
+                <p className="text-md m-1 font-medium text-black">
+                Manufacturer: {manufacturer}
+                </p>
+                <p className="text-md m-1 font-medium text-black">
+                Region: {region}
+                </p>
+                <p className="text-md m-1 font-medium text-black">
+                Years: {years.sort().join('-')}
+                </p>
           </div>
         </div>
       </>
