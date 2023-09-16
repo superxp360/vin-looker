@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react";
 import CarInfo from "./CarInfo";
 
@@ -36,7 +35,7 @@ export default function SearchVin() {
   };
 
   return (
-    <div className="flex justify-center w-full h-full">
+    <div className="flex justify-center w-full h-full bg-image">
       <div className="flex flex-col justify-center items-center mt-[70px] mx-auto w-[300px] md:w-[500px] p-2 m-5">
       <div>
         <h1 className="font-semibold text-4xl md:text-5xl text-center m-2 text-slate-800 ">VIN Looker</h1>
@@ -48,9 +47,6 @@ export default function SearchVin() {
           </h2>
         </div>
 
-        <div>
-          <img className="m-2" src="./images/vin-decoder.avif" alt="VIN Decoder"></img>
-        </div>
 
         <div className="flex flex-col w-full m-1">
           <div className="flex flex-row justify-center mt-3">
@@ -98,6 +94,6 @@ export default function SearchVin() {
           )}
         </div>
       </div>
-      </div>
+    </div>
   );
 }

@@ -3,7 +3,7 @@ export default function CarInfo(props) {
 
   return (
     <>
-      <div className="hover:cursor p-2 border-2 w-full border-slate-950 bg-slate-900 rounded-lg shadow-lg text-left">
+      <div className="hover:cursor p-2 border-2 w-full border-slate-800 bg-slate-500 rounded-lg shadow-lg text-left">
         <div>
           <p className="text-md m-1 font-medium text-white">VIN: {vin}
           </p>
