@@ -74,7 +74,7 @@ export default function SearchVin() {
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="m-1 mt-2 text-xs bg-slate-500 rounded-xl w-[80px] p-1" onClick={sampleVin}>
+            <button className="m-1 mt-2 text-xs bg-slate-500 rounded-xl w-[80px] md:text-[13px] md:w-[100px] p-1" onClick={sampleVin}>
               Try a VIN!
             </button>
           </div>
