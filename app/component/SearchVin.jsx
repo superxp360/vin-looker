@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CarInfo from "./CarInfo";
 
 export default function SearchVin() {
