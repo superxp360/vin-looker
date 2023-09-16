@@ -4,45 +4,33 @@ import { useState, useEffect } from "react";
 import CarInfo from "./CarInfo";
 
 export default function SearchVin() {
-  const [vin, setVin] = useState('');
+  const [vin, setVin] = useState("");
   const [carData, setCarData] = useState(null);
 
-  const fetchData = async (url) => {
+  const fetchVinData = async (url) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);
       setCarData(data);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
-
-  useEffect(() => {
-    if (vin) {
-      const url = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/${vin}?format=json`;
-      fetchData(url);
-    }
-  }, [vin]);
 
   const handleButtonClick = () => {
     if (vin) {
       const url = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/${vin}?format=json`;
-      fetchData(url);
+      fetchVinData(url);
     }
   };
 
-  const handleRandomVinClick = async () => {
-    const url = "https://randomvin.com/getvin.php?type=real";
-    try {
-      const response = await fetch(url);
-      const data = await response.text();
-      const json = { VIN: data };
-      setVin(data); // Update the state with the random VIN
-      fetchData(url); // Fetch car information for the random VIN
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const sampleVin = () => {
+    setVin("1G1JC5444R7252367");
   };
+
+  
+
 
   return (
     <div className="flex justify-center w-full h-full">
@@ -53,7 +41,7 @@ export default function SearchVin() {
 
         <div className="rounded-3xl m-2 p-2">
           <h2 className="text-md text-center">
-            A car's VIN (Vehicle Identification Number) is a unique code that serves as the vehicle's identification card. It contains information about the car's manufacturer, model, production year, and more. It's like a car's fingerprint and is used to track and identify vehicles by law enforcement, insurance companies, and others.
+            A car's VIN (Vehicle Identification Number) is a unique code that serves as the vehicle's identification card. 
           </h2>
         </div>
 
@@ -66,7 +54,7 @@ export default function SearchVin() {
             <div className="border-2 border-gray-500 bg-white h-[50px] w-full rounded-xl flex">
               <input
                 type="text"
-                placeholder="Enter VIN"
+                placeholder="Enter VIN #"
                 className="border-none focus:outline-none rounded-full w-full p-2 bg-slate-50 text-md"
                 value={vin}
                 onChange={(event) => {
@@ -83,20 +71,21 @@ export default function SearchVin() {
               </button>
             </div>
           </div>
-          <p className="flex flex-row justify-end mr-2 m-1 text-xs" onClick={handleRandomVinClick}>
+          <button className="flex flex-row justify-end mr-2 m-1 text-xs" onClick={sampleVin}>
             Try a VIN!
-          </p>
+          </button>
         </div>
 
         <div className="m-2 w-full">
-          {carData && (
+          {carData && carData.Results[0].Make && carData.Results[0].ModelYear && carData.Results[0].Model && (
             <CarInfo
+              vin={carData.Results[0].VIN}
               make={carData.Results[0].Make}
               modelYear={carData.Results[0].ModelYear}
               model={carData.Results[0].Model}
             />
           )}
-        </div>
+      </div>
       </div>
     </div>
   );
