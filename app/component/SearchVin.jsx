@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, useEffect } from "react";
 import CarInfo from "./CarInfo";
 
@@ -7,6 +8,7 @@ export default function SearchVin() {
   const [carData, setCarData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Fetch VIN data from the API
   const fetchVinData = async (url) => {
     try {
       setIsLoading(true); // Set loading state to true
@@ -23,6 +25,7 @@ export default function SearchVin() {
     }
   };
 
+  // Handle button click event
   const handleButtonClick = () => {
     if (vin) {
       const url = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/${vin}?format=json`;
@@ -30,6 +33,7 @@ export default function SearchVin() {
     }
   };
 
+  // Set a sample VIN for testing
   const sampleVin = () => {
     setVin("1G1JC5444R7252367");
   };
@@ -37,16 +41,15 @@ export default function SearchVin() {
   return (
     <div className="flex justify-center w-full h-full bg-image">
       <div className="flex flex-col justify-center items-center mt-[70px] mx-auto w-[300px] md:w-[500px] p-2 m-5">
-      <div>
-        <h1 className="font-semibold text-4xl md:text-5xl text-center m-2 text-slate-800 ">VIN Looker</h1>
-      </div>
+        <div>
+          <h1 className="font-semibold text-4xl md:text-5xl text-center m-2 text-slate-800 ">VIN Looker</h1>
+        </div>
 
         <div className="m-2 p-2  w-full ">
           <h2 className="text-sm w-full text-center text-gray-800 md:text-lg">
-            A car's VIN (Vehicle Identification Number) is a unique code that serves as the vehicle's identification card. 
+            A car's VIN (Vehicle Identification Number) is a unique code that serves as the vehicle's identification card.
           </h2>
         </div>
-
 
         <div className="flex flex-col w-full m-1">
           <div className="flex flex-row justify-center mt-3">
@@ -75,15 +78,15 @@ export default function SearchVin() {
               Try a VIN!
             </button>
           </div>
-      </div>
+        </div>
 
         <div className="m-2 w-full">
-          {isLoading ? (
+          {isLoading ? ( // Display loading message while fetching VIN data
             <div className="flex justify-center items-center h-40">
               <p className="text-slate-700">Searching VIN...</p>
             </div>
           ) : (
-            carData && carData.Results[0].Make && carData.Results[0].ModelYear && carData.Results[0].Model && (
+            carData && carData.Results[0].Make && carData.Results[0].ModelYear && carData.Results[0].Model && ( // Check if car data is available before rendering CarInfo component
               <CarInfo
                 vin={carData.Results[0].VIN}
                 make={carData.Results[0].Make}
